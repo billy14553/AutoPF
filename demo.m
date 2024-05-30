@@ -7,7 +7,7 @@ task = "regression";%"regression"
 if strcmp(task,"classfication")==1
     load("barley");  
 else
-    load("wheat");
+    load("meat");
 end
 fold = 4;
 LV = 5;

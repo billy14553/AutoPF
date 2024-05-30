@@ -17,11 +17,12 @@ close all;
 %Using gloal variable to share information with GA process
 
 global Configuration;
+%AllDataNames = ["meat"];
 AllDataNames = ["wheat","meat","barley"];
 taskList = ["regression","regression","classfication"];
-optimaLvs = [5,7,9];
+optimaLvs = [7,7,9];
 appname = [];
-for i = 1:1:3
+for i = 3:1:3
     t1 = cputime;
     Configuration = [];
     LV  =optimaLvs(i);
@@ -33,7 +34,10 @@ for i = 1:1:3
     buildConfigration(task,fold,LV);
     obj = preprocessCombos(X,y);
     metric_c = obj.metric_cv2;
-    metric_p = comboPredict(obj,Xtest,ytest);
+    result = Configuration;
+    result.metric_c = metric_c;
+    result.obj = obj;
+    metric_p = comboPredict(result,Xtest,ytest);
     if strcmp(Configuration.task,"classfication")==1
         metric_c = 1-metric_c;
         metric_p = 1-metric_p;
@@ -44,7 +48,7 @@ for i = 1:1:3
         fprintf("%d:%s, ",j,func2str( Configuration.Backbone{j}{idx}));
     end
     fprintf("\n best variable selection:%s \n",func2str( Configuration.extraWork{1}{obj.x2}));
-    fprintf("current task: %s, metric_cv: %.2f,metric_p: %.2f \n",...
+    fprintf("current task: %s, metric_cv: %.3f,metric_p: %.3f \n",...
         Configuration.task,metric_c,metric_p);
     %RMSECVArray(k) =  metric_c;
     %RMSEPArray(k) = metric_p;

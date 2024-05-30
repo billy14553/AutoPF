@@ -1,4 +1,4 @@
-function [RMSEC,RmseCurve,RMSEP] = pls_modeling_evalation(Xtrain,y,LV,Xt,ytest)
+function [RMSEC,yhat,RMSEP] = pls_modeling_evalation(Xtrain,y,LV,Xt,ytest)
 LV = min(size(Xtrain,2),LV);
 [XL,YL,XS,YS,BETA,PCTVAR,MSE,STATS] = plsregress(Xtrain,y,LV);
 RMSEC = sqrt(MSE(2,LV));

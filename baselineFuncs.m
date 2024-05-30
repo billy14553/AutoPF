@@ -1,7 +1,7 @@
 %BaseLine
 function funcs = baselineFuncs()
-funcs  = {@none,@baseline_detrend,@baseline_derivate1_1,...
-    @baseline_derivate1_3,@baseline_derivate1_4,@baseline_derivate2_1,...
+funcs  = {@none,@baseline_derivate1_1,...
+    @baseline_derivate1_3,@baseline_derivate1_4,@baseline_derivate2_2,...
     @baseline_derivate2_3,@baseline_derivate2_4,@baseline_derivate2_5};%,@baseline_wls
 end
 
@@ -45,6 +45,16 @@ end
 function [NewXtrain,NewXval] = baseline_derivate2_1(Xtrain,Xval)
 ws = default_windows();
 order = 1;
+der = 2;
+[NewXtrain]  = savgol(Xtrain,ws,order,der);
+if nargin>1
+    NewXval = savgol(Xval,ws,order,der);
+end
+end
+
+function [NewXtrain,NewXval] = baseline_derivate2_2(Xtrain,Xval)
+ws = default_windows();
+order = 2;
 der = 2;
 [NewXtrain]  = savgol(Xtrain,ws,order,der);
 if nargin>1

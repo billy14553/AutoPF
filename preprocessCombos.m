@@ -8,6 +8,7 @@
   
 function combo = preprocessCombos(X,y)
     global Configuration;
+    factor = getPenalityFactor();
     Xtrain = X;
     [x1,metric_cv] = gaPreprecessing(X,y,Configuration.LVs);
     for i = 1:1:length(x1)
@@ -20,7 +21,10 @@ function combo = preprocessCombos(X,y)
     for i = 1:1:length(list)
          [Xtrain1,~,vsel{i}] = list{i}(Xtrain,Xtrain,Configuration);
          %Xtrain1 = Xtrain(:,vsel{i});
-         RMSECV(i) = crossvalidate(X,y,x1,vsel{i});
+         RMSECV(i) = crossvalidate(X,y,x1,vsel{i},0);
+         if i>1
+             RMSECV(i) = RMSECV(i) *factor;
+        end
     end
     [combo.metric_cv2,x2] = min(RMSECV);
     combo.x1 = x1;
@@ -29,5 +33,8 @@ function combo = preprocessCombos(X,y)
     combo.y   = y;
     combo.vsel = vsel{x2};
     combo.metric_cv1 = metric_cv;
- 
+    combo.metric_cv1 = unpenalizedRMSECV(metric_cv,x1);
+    if x2>1
+        combo.metric_cv2 = combo.metric_cv2/factor;
+    end
 end

@@ -1,5 +1,6 @@
 %variable selection for regression
 function funcs = variableselRegFuncs()
+%funcs  = {@none,@variablesel_reg_uve,@variablesel_reg_RF};
 funcs  = {@none,@variablesel_reg_cars,@variablesel_reg_uve,@variablesel_reg_RF};
 end
 

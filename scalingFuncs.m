@@ -1,6 +1,6 @@
 %scaling
 function funcs = scalingFuncs()
-funcs  = {@none,@scaling_auto,@scaling_poisson,@scaling_pareto};%,@scaling_sqrtmean,,
+funcs  = {@none,@scaling_auto};%@scaling_poisson,,@scaling_pareto,@scaling_sqrtmean,,
 end
 
 function [NewXtrain,NewXval] = scaling_auto(Xtrain,Xval)

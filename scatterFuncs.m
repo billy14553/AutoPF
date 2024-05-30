@@ -1,7 +1,9 @@
 % Scatter Correction  
 
 function funcs = scatterFuncs()
- funcs  = {@none,@scatter_snv1,@scatter_msc1,@scatter_emsc};%
+% funcs  = {@none,@scatter_msc1,@scatter_emsc,@scatter_snv2};
+ 
+ funcs  = {@none,@scatter_snv2,@scatter_msc1,@scatter_emsc};
  %funcs  = {@none,@scatter_snv1,@scatter_msc1,@scatter_vsn,@scatter_emsc};
 end
 function [NewXtrain,NewXval] = scatter_snv1(Xtrain,Xval)
@@ -9,6 +11,13 @@ function [NewXtrain,NewXval] = scatter_snv1(Xtrain,Xval)
 if nargin>1
     NewXval = snv(Xval);
 end
+end
+function [NewXtrain,NewXval] = scatter_snv2(Xtrain,Xval)
+[NewXtrain,mns,sds]  = snv2(Xtrain);
+if nargin>1
+    NewXval =  snv2(Xval);
+end
+
 end
 function [NewXtrain,NewXval] = scatter_msc1(Xtrain,Xval)
 mx = mean(Xtrain);
