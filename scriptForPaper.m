@@ -1,4 +1,4 @@
-%Preprocessing method from PLS TOOLBOX
+%Preprocessing method 
 %2023/9/13 to avoid overfitting, we use RMSECV instead of RMSEC
 clear;
 close all;
@@ -49,14 +49,12 @@ for i = 3:1:3
     end
     fprintf("\n best variable selection:%s \n",func2str( Configuration.extraWork{1}{obj.x2}));
     fprintf("current task: %s, metric_cv: %.3f,metric_p: %.3f \n",...
-        Configuration.task,metric_c,metric_p);
+    Configuration.task,metric_c,metric_p);
     %RMSECVArray(k) =  metric_c;
     %RMSEPArray(k) = metric_p;
     t2 = cputime;
-
-   % save(AllDataNames(i)+"Res"+"LV"+num2str(LV));
+    save(AllDataNames(i)+"Res"+"LV"+num2str(LV));
     disp(fprintf("CPU Time: %.2f \n",t2-t1));
-    %
     if strcmp(Configuration.task,"regression")==1
         optimalRMSECV1 = [];
         %draw RMSECV from 1-10 for each preprocessing method

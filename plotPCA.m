@@ -61,7 +61,7 @@ figure;
     Xtrain = obj.X;
     for i = 1:1:length(obj.x1)
         idx1 = obj.x1(i);
-        [Xtrain,Xtrain] = model.Backbone{i}{idx1}(Xtrain,Xtrain);
+        [Xtrain,Xtrain] = result.Backbone{i}{idx1}(Xtrain,Xtrain);
     end
 
 [coef,scores,latent,tsquared,explained,mu] = pca(Xtrain);

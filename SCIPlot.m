@@ -5,7 +5,7 @@ function h = SCIPlot()
     %Changing Axis Properties
     a=gca;
     a.FontSize=16;%20
-    a.FontName='Helvetica';
+    a.FontName='Times New Romas';
     %a.FontWeight='bold';
     a.Box='on';
     %set(gca,'fontweight','bold')

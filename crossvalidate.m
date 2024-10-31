@@ -16,8 +16,10 @@ for j = 1:1:Configuration.fold
     ytest = YTestData{j};
 for i = 1:1:length(x)
     idx = x(i);
+    tmp = Xtrain;
     [Xtrain,Xt] = Configuration.Backbone{i}{idx}(Xtrain,Xt);
 end
+
 if nargin>3
     Xtrain = Xtrain(:,vsel);
     Xt = Xt(:,vsel);
