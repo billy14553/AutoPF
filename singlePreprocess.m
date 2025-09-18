@@ -21,6 +21,7 @@ Methods = ["None","SG-15-0-2","smothing_mw_average",...
     "SG-15-2-2","SG-15-2-3","SG-15-2-4","SG-15-2-5",...%"ALS100","ALS1000","ALS10000""ALS(p=0.01,l = 1000)",
     "SNV","MSC","EMSC","AutoPF"];
 RMSECV = [];
+R2 = [];
 Lvs = 1:10;
 %figure;
 %hold on;
@@ -47,12 +48,17 @@ for j = 1:1:size(xarray,1)
           obj.vsel = oldobj.vsel;
           model = Configuration;
           model.obj = obj;
-          RMSEP(j) = comboPredict(model,Xtest,ytest);
+          [RMSEP(j),yhat1 ]= comboPredict(model,Xtest,ytest);
+          [RP,R2(j)] = calculateR2andRMSE(ytest,yhat1);
+          
     end
     model = Configuration;
     model.obj = obj;
-    RMSEP(j) = comboPredict(model,Xtest,ytest);
-    disp(sprintf("Method: %s,optimal LV:%d,RMSECV:%.3f,RMSEP:%.3f \n",Methods(j),b,a,RMSEP(j)));
+    [RMSEP(j),yhat1] = comboPredict(model,Xtest,ytest);
+    [R2(j),RP] = calculateR2andRMSE(ytest,yhat1);
+    %disp(sprintf("Method: %s,optimal LV:%d,RMSECV:%.3f,RMSEP:%.3f \n",Methods(j),b,a,RMSEP(j)));
+
+    disp(sprintf("Method: %s,optimal LV:%d,RMSECV:%.3f,RMSEP:%.3f,RP1:%.3f R2:%.3f\n",Methods(j),b,a,RMSEP(j),RP,R2(j)));
     Configuration.LVs = oldLvs;
     obj = oldobj; 
 end

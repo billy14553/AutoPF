@@ -18,11 +18,12 @@ close all;
 
 global Configuration;
 %AllDataNames = ["meat"];
+%AllDataNames = ["wheat","meat","barley"];
 AllDataNames = ["wheat","meat","barley"];
 taskList = ["regression","regression","classfication"];
 optimaLvs = [7,7,9];
 appname = [];
-for i = 1:1:3
+for i = 2:1:2
     t1 = cputime;
     Configuration = [];
     LV  =optimaLvs(i);
@@ -50,6 +51,7 @@ for i = 1:1:3
     fprintf("\n best variable selection:%s \n",func2str( Configuration.extraWork{1}{obj.x2}));
     fprintf("current task: %s, metric_cv: %.3f,metric_p: %.3f \n",...
     Configuration.task,metric_c,metric_p);
+    return;
     %RMSECVArray(k) =  metric_c;
     %RMSEPArray(k) = metric_p;
     t2 = cputime;

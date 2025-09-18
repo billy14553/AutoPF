@@ -27,7 +27,7 @@ function [x,fval] =gaPreprecessing(X,y,LV)
         options = optimoptions(options,'MaxStallGenerations', 3);
         options = optimoptions(options,'PopulationSize', 12);
     else
-        options = optimoptions(options,'PopulationSize', 16);
+        options = optimoptions(options,'PopulationSize', 18);
     end
     
    % ConstraintTolerance_Data=1e-1;
