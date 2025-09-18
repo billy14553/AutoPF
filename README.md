@@ -18,8 +18,9 @@ In order to run, the code requires the following Matlab modules:
 
 # Quickstart
 * Install libPLS
-* Run the `demo.m` to see how to use this source code
 * Run the `scriptForPaper.m` to obtain the results of this paper
+* Run the `demo.m` to see how to use this source code (fixing)
+
 
 
 
@@ -28,5 +29,5 @@ In order to run, the code requires the following Matlab modules:
 * Wheat: `http://www.models.life.ku.dk/`
 * Meat: `http://lib.stat.cmu.edu/datasets/tecator`
 ## For Classification
-* Barley: This dataset can be found the related reference in the paper. 
+* Barley: This dataset can be found int the related reference in the paper. 
 
