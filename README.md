@@ -19,7 +19,7 @@ In order to run, the code requires the following Matlab modules:
 # Quickstart
 * Install libPLS
 * Run the `scriptForPaper.m` to obtain the results of this paper
-* Run the `demo.m` to see how to use this source code (fixing)
+* Run the `demo.m` to see how to use this source code
 
 
 
